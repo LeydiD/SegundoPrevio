@@ -28,7 +28,7 @@ public class ProjectAssignmentController {
         return ResponseEntity.ok(projectAssignments);
     }
     
-    @PostMapping("/assign")
+    @PostMapping("/assign/{employeeId}/{projectId}/{roleId}")
     public ResponseEntity<ProjectAssignment> asignarEmpleadoAProyecto( @PathVariable Integer employeeId,@PathVariable Integer projectId,
     		@PathVariable Integer roleId) {
         
