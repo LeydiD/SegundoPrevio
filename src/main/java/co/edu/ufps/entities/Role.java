@@ -19,21 +19,18 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="position")
-public class Position {
+@Table(name="role")
+public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="name", length =100)
+	@Column(name="name", length =50)
 	private String name;
 	
-	@Column(name="salary")
-	private Double salary;
-	
-	@OneToMany(mappedBy="position", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
 	@JsonIgnore
-	private List<Employee> employees;
+	private List<ProjectAssignment> projectAssignments;
 	
 }

@@ -2,6 +2,7 @@ package co.edu.ufps.entities;
 
 
 
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,21 +20,27 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="position")
-public class Position {
+@Table(name="project")
+public class Project {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="name", length =100)
+	@Column(name="name", length =200)
 	private String name;
 	
-	@Column(name="salary")
-	private Double salary;
+	@Column(name="descripcion")
+	private String descripcion;
 	
-	@OneToMany(mappedBy="position", cascade=CascadeType.ALL)
+	@Column(name="start_date")
+	private Date startDate;
+	
+	@Column(name="end_date")
+	private Date endDate;
+	
+	@OneToMany(mappedBy="project", cascade=CascadeType.ALL)
 	@JsonIgnore
-	private List<Employee> employees;
+	private List<ProjectAssignment> projectAssignments;
 	
 }

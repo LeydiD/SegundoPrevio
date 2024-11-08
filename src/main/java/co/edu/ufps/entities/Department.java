@@ -12,6 +12,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -19,8 +23,8 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="position")
-public class Position {
+@Table(name="department")
+public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -29,11 +33,16 @@ public class Position {
 	@Column(name="name", length =100)
 	private String name;
 	
-	@Column(name="salary")
-	private Double salary;
-	
-	@OneToMany(mappedBy="position", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="department", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Employee> employees;
+	
+	@ManyToOne
+	@JoinColumn(name="chief_id")
+	private Employee employee;
+	
+	@ManyToMany(mappedBy = "departments1")
+	@JsonIgnore
+	private List<Employee> employees1;
 	
 }
