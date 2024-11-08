@@ -40,6 +40,7 @@ public class EmployeeService {
 		employee.setLastName(employeeDetails.getLastName());
 		employee.setBirthdate(employeeDetails.getBirthdate());
 		employee.setEntryDate(employeeDetails.getEntryDate());
+		employee.setDepartment(employeeDetails.getDepartment());
 		return Optional.of(employeeRepository.save(employee));
 	}
 
